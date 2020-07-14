@@ -1,5 +1,4 @@
 # Greg
 Greg's Stuff
 
-
-test
+A GitHub [page](https://gfcrbg.github.io/Greg/) that I will likely never get around to editing/finishing.
