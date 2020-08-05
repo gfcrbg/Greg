@@ -1,0 +1,41 @@
+{|NESTED|}
+{|LOOP|NESTED.CLIENT_108_LEVEL_2(SORT=NAME)}
+  {|SHOWIF|LOOP.ISFIRST}
+  <table class='data'>
+    <thead>
+      <tr>
+        <th>District</th>
+        <th>Location</th>
+        {|LOOP|CLIENT_108_LEVEL_2.PROPERTIES(FILTERSET=type|eq|question_for_section_2;type|eq|question_actual_point_score,SORT=ORDER_NUM)}
+        <th>{PROPERTIES.NAME}</th>
+        {/|LOOP|}
+      </tr>
+    </thead>
+      
+    <tbody>
+  {/|SHOWIF|}
+        
+    <tr>
+      	<td>{CLIENT_108_LEVEL_2.NAME}</td>
+        <td></td>
+        # Modify the loop so that it displays averages of the locations per QID in section 2.
+       {|LOOP|CLIENT_108_LEVEL_2.PROPERTIES(FILTERSET=type|eq|question_for_section_2;type|eq|sectional_actual_point_score,SORT=ORDER_NUM)}
+        <td>{CLIENT_108_LEVEL_2.PROPERTIES.VALUE}</td>
+       {/|LOOP|}
+    </tr>
+    
+    <tr>
+    {|LOOP|CLIENT_108_LEVEL_2.CLIENT_108_LEVEL_1(SORT=NAME)}
+       <td></td>
+       <td>{CLIENT_108_LEVEL_1.NAME}</td>
+       {|LOOP|CLIENT_108_LEVEL_1.PROPERTIES(FILTERSET=type|eq|question_for_section_2;type|eq|question_actual_point_score,SORT=ORDER_NUM)}
+       <td>{AVG(CLIENT_108_LEVEL_1.PROPERTIES.VALUE).ROUND(2)}</td>
+       {/|LOOP|}
+     </tr>
+      	
+      {/|LOOP|}
+    {/|LOOP|}
+        
+    </tbody>
+  </table>
+{/|NESTED|}
